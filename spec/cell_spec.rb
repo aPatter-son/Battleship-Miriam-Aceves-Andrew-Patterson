@@ -1,6 +1,4 @@
 require './lib/ship'
-
-
 require './lib/cell'
 
 RSpec.describe Cell do
@@ -29,7 +27,7 @@ RSpec.describe Cell do
     expect(cell.empty?).to eq(true)
   end
 
-  xit 'adds ship' do
+  it 'adds ship' do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
 

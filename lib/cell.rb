@@ -1,4 +1,5 @@
 
+
 class Cell
   attr_reader :coordinate, :ship
 
@@ -10,10 +11,15 @@ class Cell
   def empty?
     if @ship == @coordinate
       false
-    else
-      true
+      else
+        true
     end
   end
+
+  def place_ship(cruiser)
+    @ship << cruiser
+  end
+
 
 
 end
