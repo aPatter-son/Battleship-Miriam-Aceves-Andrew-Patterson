@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/ship'
 
 RSpec.describe Ship do
@@ -34,8 +35,11 @@ RSpec.describe Ship do
 
   it 'hits ship' do
     cruiser = Ship.new("Cruiser", 3)
+
     expect(cruiser.health).to eq(3)
+
     cruiser.hit
+    
     expect(cruiser.health).to eq(2)
   end
 end

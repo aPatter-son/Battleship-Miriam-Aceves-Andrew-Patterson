@@ -6,20 +6,36 @@ class Cell
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
+    @fired_upon = false
   end
 
   def empty?
-    if @ship == @coordinate
-      false
-      else
-        true
+    @ship.nil?
+  end
+
+  def place_ship(ship)
+    @ship = ship
+  end
+
+  def fired_upon?
+    @fired_upon
+  end
+
+  def fire_upon
+    ship.hit if !empty?
+    @fired_upon = true
+
+  end
+
+  def render()
+    if @fired_upon && empty?
+      "M"
+    elsif @fired_upon && empty? && @ship.sunk?
+      "X"
+    elsif @fired_upon && !empty? & @ship.hit
+      "H"
+    else
+      "."
     end
   end
-
-  def place_ship(cruiser)
-    @ship = cruiser
-  end
-
-
-
 end
