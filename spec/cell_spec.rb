@@ -72,6 +72,6 @@ RSpec.describe Cell do
 
     cell_2.place_ship(cruiser)
 
-    expect(cell_2.render).to eq(".")
+    expect(cell_2.render).to eq(".")    
   end
 end
