@@ -27,9 +27,11 @@ class Cell
 
   end
 
-  def render()
+  def render(see_ship = nil)
     if @fired_upon && empty?
       "M"
+    elsif see_ship == true && !empty?
+      "S"
     elsif @fired_upon && empty? && @ship.sunk?
       "X"
     elsif @fired_upon && !empty? & @ship.hit
