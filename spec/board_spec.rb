@@ -36,6 +36,20 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
   end
 
+  it 'checks if ship length and coordinates match' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+
+    cell_1.place_ship(cruiser)
+    cell_2.place_ship(cruiser)
+    cell_3.place_ship(cruiser)
+
+    expect(board.valid_length(cruiser, ["A2","A2", "A3"])).to eq(true)
+  end
+
   it 'can find the number of coordinate' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -48,4 +62,5 @@ RSpec.describe Board do
 
     expect(board.nums(board.cells)).to eq([1,2,3,4])
   end
+
 end
