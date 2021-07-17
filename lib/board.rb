@@ -20,4 +20,18 @@ class Board
     "D3" => Cell.new("D3"),
     "D4" => Cell.new("D4")}
   end
+
+  def valid_coordinate?(coordinate)
+    @cells.keys.include?(coordinate)
+  end
+
+  def valid_placement?(ship, coordinates)
+
+  end
+
+  def nums(coordinates)
+    coordinates.map do |number|
+      number[-1].coordinate[1].to_i
+    end.uniq
+  end
 end
