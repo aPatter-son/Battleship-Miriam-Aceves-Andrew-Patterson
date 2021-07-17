@@ -1,3 +1,4 @@
+require 'pry'
 class Board
   attr_reader :cells
 
@@ -29,9 +30,19 @@ class Board
 
   end
 
+  def valid_length(ship, coordinates)
+    coordinates.count == ship.length
+  end
+
   def nums(coordinates)
     coordinates.map do |number|
       number[-1].coordinate[1].to_i
+    end.uniq
+  end
+
+  def letters(coordinates)
+    coordinates.map do |letter|
+      letter[-1].coordinate[0]
     end.uniq
   end
 end
