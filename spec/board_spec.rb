@@ -59,8 +59,10 @@ RSpec.describe Board do
 
     cell_1.place_ship(submarine)
     cell_2.place_ship(submarine)
+    # binding.pry
+    coordinates = [cell_1, cell_2]
 
-    expect(board.nums(board.cells)).to eq([1,2,3,4])
+    expect(board.nums(coordinates)).to eq([1,2])
   end
 
   it 'can find coordinate letters' do
@@ -76,4 +78,18 @@ RSpec.describe Board do
     expect(board.letters(board.cells)).to eq(["A", "B","C","D"])
   end
 
+  it 'can determine if nums are consecutive' do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+
+    cell_1.place_ship(submarine)
+    cell_2.place_ship(submarine)
+
+    coordinates = [cell_1, cell_2]
+
+    expect(board.consecutive_nums?(coordinates)).to eq([1,2])
+  end
 end
