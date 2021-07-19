@@ -30,21 +30,30 @@ class Board
 
   end
 
+  def valid_length(ship, coordinates)
+    coordinates.count == ship.length
+  end
+
   def nums(coordinates)
     coordinates.map do |number|
-      number[-1].coordinate[1].to_i
+      # binding.pry
+      number.coordinate[1].to_i
+
     end.uniq
   end
 
   def letters(coordinates)
-     coordinates.map do |letter|
-       letter.coordinate[0]
-     end.uniq
+    coordinates.map do |letter|
+      letter.coordinate[0]
+    end.uniq
   end
 
-  def cons_nums(coordinates)
+  def consecutive_nums(coordinates)
+    (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
+  end
 
-    nums.each_cons
+  def consec_nums_and_different_letters
+
   end
 
   def cons_letters
