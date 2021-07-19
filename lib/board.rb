@@ -1,3 +1,4 @@
+require 'pry'
 class Board
   attr_reader :cells
 
@@ -19,5 +20,39 @@ class Board
     "D2" => Cell.new("D2"),
     "D3" => Cell.new("D3"),
     "D4" => Cell.new("D4")}
+  end
+
+  def valid_coordinate?(coordinate)
+    @cells.keys.include?(coordinate)
+  end
+
+  def valid_placement?(ship, coordinates)
+
+  end
+
+  def nums(coordinates)
+    coordinates.map do |number|
+      number[-1].coordinate[1].to_i
+    end.uniq
+  end
+
+  def letters(coordinates)
+     coordinates.map do |letter|
+       letter.coordinate[0]
+     end.uniq
+  end
+
+  def cons_nums(coordinates)
+
+    nums.each_cons
+  end
+
+  def cons_letters
+    # incomplete
+    letter.each do |let|
+      let.ord
+
+      # ord[] -> each_cons (rules) [1,2,3]
+    end
   end
 end
