@@ -38,6 +38,7 @@ class Board
     coordinates.map do |number|
       # binding.pry
       number.coordinate[1].to_i
+
     end.uniq
   end
 
@@ -55,5 +56,12 @@ class Board
 
   end
 
+  def cons_letters
+    # incomplete
+    letter.each do |let|
+      let.ord
 
+      # ord[] -> each_cons (rules) [1,2,3]
+    end
+  end
 end
