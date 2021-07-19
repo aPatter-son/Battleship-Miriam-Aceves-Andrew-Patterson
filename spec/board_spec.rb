@@ -75,7 +75,9 @@ RSpec.describe Board do
     cell_1.place_ship(submarine)
     cell_2.place_ship(submarine)
 
-    expect(board.letters(board.cells)).to eq(["A", "B","C","D"])
+    coordinates = [cell_1, cell_2]
+
+    expect(board.letters(coordinates)).to eq(["A"])
   end
 
   it 'can determine if nums are consecutive' do
