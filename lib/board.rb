@@ -56,20 +56,7 @@ class Board
       let.ord
     end
   end
-
-  # def only_one_consec
-  #   code "this" || "that"
-  # end
-  #
-  # def consec_num_same_letters
-  #
-  #   if consecutive_nums(coordinates) == nums(coordinates)
-  #       true
-  #     else
-  #       false
-  #   end
-  # end
-
+  
   def letters_length?(coordinates)
     letters(coordinates).length == 1
   end
@@ -77,8 +64,9 @@ class Board
   def nums_length?(coordinates)
     nums(coordinates).length == 1
   end
+
   # def consec_letters_same_nums
-  #   if letters_length = true
+  #   if letters_length = true  ( we know its not consec bc its the same (letter))
   #
   #   elsif
   #
@@ -90,6 +78,15 @@ class Board
   #       false
   #   end
   # end
+  # def consec_num_same_letters
+  #
+  #   if consecutive_nums(coordinates) == nums(coordinates)
+  #       true
+  #     else
+  #       false
+  #   end
+  # end
+
   # consec_nums ("but not letters")
   # consec_letters ("but not nums")
 end
