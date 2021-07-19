@@ -36,7 +36,8 @@ class Board
 
   def nums(coordinates)
     coordinates.map do |number|
-      number[-1].coordinate[1].to_i
+      # binding.pry
+      number.coordinate[1].to_i
     end.uniq
   end
 
@@ -44,5 +45,9 @@ class Board
     coordinates.map do |letter|
       letter[-1].coordinate[0]
     end.uniq
+  end
+
+  def consecutive_nums(coordinates)
+    (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
   end
 end
