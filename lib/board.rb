@@ -43,11 +43,17 @@ class Board
 
   def letters(coordinates)
     coordinates.map do |letter|
-      letter[-1].coordinate[0]
+      letter.coordinate[0]
     end.uniq
   end
 
   def consecutive_nums(coordinates)
     (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
   end
+
+  def consec_nums_and_different_letters
+
+  end
+
+
 end
