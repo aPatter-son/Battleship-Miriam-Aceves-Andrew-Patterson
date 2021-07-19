@@ -36,7 +36,6 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A2", "A3"])).to eq(true)
   end
 
-
   xit 'checks if ship length and coordinates match' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -73,13 +72,23 @@ RSpec.describe Board do
     submarine = Ship.new("Submarine", 2)
     cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
+    cell_3 = board.cells["B1"]
+    cell_4 = board.cells["C1"]
+    cell_5 = board.cells["D1"]
 
     cell_1.place_ship(submarine)
     cell_2.place_ship(submarine)
+    cell_3.place_ship(cruiser)
+    cell_4.place_ship(cruiser)
+    cell_5.place_ship(cruiser)
 
     coordinates = [cell_1, cell_2]
+    coordinates_2 = [cell_3, cell_4, cell_5]
+    # coordinates = [cell_1, cell_2, cell_3, cell_4, cell_5]
 
     expect(board.letters(coordinates)).to eq(["A"])
+    expect(board.letters(coordinates_2)).to eq(["B", "C", "D"])
+    # , "B", "C", "D"
   end
 
   it 'can determine if nums are consecutive' do
@@ -94,16 +103,27 @@ RSpec.describe Board do
 
      coordinates = [cell_1, cell_2]
 
-     expect(board.consecutive_nums?(coordinates)).to eq([1,2])
+     expect(board.consecutive_nums(coordinates)).to eq([1,2])
    end
 
-  xit 'puts coords in ordinal value' do
+  it 'puts coords in ordinal value' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
+    cell_3 = board.cells["B1"]
+    cell_4 = board.cells["C1"]
+    cell_5 = board.cells["D1"]
 
-    expect(board.cons_letters).to eq(["65","66","67","68"])
+    cell_1.place_ship(submarine)
+    cell_2.place_ship(submarine)
+    cell_3.place_ship(cruiser)
+    cell_4.place_ship(cruiser)
+    cell_5.place_ship(cruiser)
+
+    coordinates = [cell_3, cell_4, cell_5]
+
+    expect(board.cons_letters(coordinates)).to eq([66, 67, 68])
   end
 end

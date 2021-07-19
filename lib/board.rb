@@ -38,7 +38,6 @@ class Board
     coordinates.map do |number|
       # binding.pry
       number.coordinate[1].to_i
-
     end.uniq
   end
 
@@ -52,16 +51,17 @@ class Board
     (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
   end
 
-  def consec_nums_and_different_letters
-
-  end
-
-  def cons_letters
-    # incomplete
-    letter.each do |let|
+  def cons_letters(coordinates)
+    ord_values = letters(coordinates).map do |let|
       let.ord
-
-      # ord[] -> each_cons (rules) [1,2,3]
     end
   end
+  
+  def only_one_consec
+    code "this" || "that"
+  end
+  # consec_num_same_letters
+  # consec_letters_same_nums
+  # consec_nums ("but not letters")
+  # consec_letters ("but not nums")
 end
