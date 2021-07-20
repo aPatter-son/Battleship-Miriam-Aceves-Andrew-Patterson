@@ -65,28 +65,30 @@ class Board
     nums(coordinates).length == 1
   end
 
-  # def consec_letters_same_nums
-  #   if letters_length = true  ( we know its not consec bc its the same (letter))
-  #
-  #   elsif
-  #
-  #   ["A"] number of elements = 1 (they are all the same)
-  #   ["B", "C", "D"] number of elements > 1 (check if cons)
-  #   if cons_letters(coordinates) == letters(coordinates)
-  #       true
-  #     else
-  #       false
-  #   end
-  # end
-  # def consec_num_same_letters
-  #
-  #   if consecutive_nums(coordinates) == nums(coordinates)
-  #       true
-  #     else
-  #       false
-  #   end
-  # end
+  def cons_letters
+    # incomplete
+    ord_values = letters.map do |let|
+      let.ord
 
-  # consec_nums ("but not letters")
-  # consec_letters ("but not nums")
+      # ord[] -> each_cons (rules) [1,2,3]
+    end
+  end
+
+  def render
+    # user board
+    "  1 2 3 4 \n" +
+    "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)}"
+    "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)}"
+    "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)}"
+    "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)}"
+
+    #computer board
+    "  1 2 3 4 \n" +
+    "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}"
+    "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}"
+    "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}"
+    "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}"
+
+
+  end
 end
