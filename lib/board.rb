@@ -51,8 +51,18 @@ class Board
     (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
   end
 
-  def consec_nums_and_different_letters
+  def cons_letters(coordinates)
+    ord_values = letters(coordinates).map do |let|
+      let.ord
+    end
+  end
+  
+  def letters_length?(coordinates)
+    letters(coordinates).length == 1
+  end
 
+  def nums_length?(coordinates)
+    nums(coordinates).length == 1
   end
 
   def cons_letters
@@ -63,7 +73,6 @@ class Board
       # ord[] -> each_cons (rules) [1,2,3]
     end
   end
-
 
   def render
     # user board
