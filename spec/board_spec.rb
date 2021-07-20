@@ -94,7 +94,7 @@ RSpec.describe Board do
 
      coordinates = [cell_1, cell_2]
 
-     expect(board.consecutive_nums?(coordinates)).to eq([1,2])
+     expect(board.consecutive_nums(coordinates)).to eq([1,2])
    end
 
   xit 'puts coords in ordinal value' do
