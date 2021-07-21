@@ -95,16 +95,18 @@ RSpec.describe Board do
      submarine = Ship.new("Submarine", 2)
      cell_1 = board.cells["A1"]
      cell_2 = board.cells["A2"]
+     cell_3 = board.cells["A4"]
 
-     cell_1.place_ship(submarine)
-     cell_2.place_ship(submarine)
+     cell_1.place_ship(cruiser)
+     cell_2.place_ship(cruiser)
+     cell_3.place_ship(cruiser)
 
-     coordinates = [cell_1, cell_2]
+     coordinates = [cell_1, cell_2, cell_3]
 
-     expect(board.consecutive_nums(coordinates)).to eq([1,2])
+     expect(board.consecutive_nums?(coordinates)).to eq(false)
    end
 
-  it 'puts coords in ordinal value' do
+  xit 'puts coords in ordinal value' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
@@ -167,7 +169,7 @@ RSpec.describe Board do
     expect(board.nums_length?(coordinates)).to eq(true)
   end
 
-  it 'measures the amount of elements in nums' do
+  xit 'measures the amount of elements in nums' do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
