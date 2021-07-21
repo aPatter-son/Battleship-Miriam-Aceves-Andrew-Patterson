@@ -26,17 +26,41 @@ class Board
     @cells.keys.include?(coordinate)
   end
 
-  def valid_placement?(ship, coordinates)
 
+  def valid_placement?(ship, coordinates)
+    start_check?(ship, coordinates)
   end
 
-  def valid_length(ship, coordinates)
+  def start_check?(ship, coordinates)
+    if valid_length?(ship, coordinates) && !overlapping?(coordinates)
+      cons_length_check?(coordinates)
+    else
+      false
+    end
+  end
+
+  def cons_length_check?(coordinates)
+    if nums_length?(coordinates) && letters_length?(coordinates) == 1
+      false
+    elsif nums_length?(coordinates) == 1
+      cons_letter?(coordinates)
+    elsif letters_length?(coordinates) == 1
+    consecutive_nums?(coordinates)
+    else
+      false
+    end
+  end
+
+  def valid_length?(ship, coordinates)
     coordinates.count == ship.length
+  end
+
+  def overlapping?(coordinates)
+    coordinates.any? {|coordinate| !@cells[coordinates].nil?}
   end
 
   def nums(coordinates)
     coordinates.map do |number|
-      # binding.pry
       number.coordinate[1].to_i
     end.uniq
   end
@@ -47,30 +71,35 @@ class Board
     end.uniq
   end
 
-  def consecutive_nums(coordinates)
-    (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
-  end
-
-  def cons_letters(coordinates)
-    ord_values = letters(coordinates).map do |let|
-      let.ord
+  def consecutive_nums?(coordinates)
+    num_coordinates = nums(coordinates)
+    if coordinates.length == 2
+      num_coordinates[0] == (num_coordinates[1] - 1) ? true : false
+    else num_coordinates.length == 3
+      (num_coordinates[0] == (num_coordinates[1] - 1) && num_coordinates[1]) == (num_coordinates[2] - 1) ? true : false
     end
   end
-  
+
+  def cons_letters?(coordinates)
+    ord_values = []
+    letters(coordinates).map do |let|
+      ord_values << let.ord
+    end
+
+    ord_values.each_cons(2).all? {|a, b| b == a + 1 }
+  end
+
   def letters_length?(coordinates)
-    letters(coordinates).length == 1
+    if letters(coordinates).length == 1
+      true
+    else cons_letters?(coordinates)
+    end
   end
 
   def nums_length?(coordinates)
-    nums(coordinates).length == 1
-  end
-
-  def cons_letters
-    # incomplete
-    ord_values = letters.map do |let|
-      let.ord
-
-      # ord[] -> each_cons (rules) [1,2,3]
+    if nums(coordinates).length == 1
+      true
+    else consecutive_nums?(coordinates)
     end
   end
 
