@@ -32,12 +32,11 @@ class Board
     # consec_nums == true && consec_letters == false || consec_letters == true && consec_nums == false
   end
 
-  def start_check?
-    if valid_length?(coordinates) == true
-        cons_length_check(coordinates)
-        binding.pry
-      else
-        false
+  def start_check?(ship, coordinates)
+    if valid_length?(ship, coordinates) && !overlapping?(coordinates)
+      cons_length_check(coordinates)
+    else
+      false
     end
   end
 
@@ -56,6 +55,25 @@ class Board
   def valid_length?(ship, coordinates)
     coordinates.count == ship.length
   end
+
+  def overlapping?(coordinates)
+    coordinates.any? {|coordinate| !@cells[coordinates].nil?}
+
+      # binding.pry
+      # coordinates.map {|coordinate| cells[coordinates]}
+      # coordinates.each do |coordinate|
+      # #   empty?(coordinates)
+      # end
+      # needed_coord = coordinates.map do |number|
+      #   number.coordinate
+      # end
+      # needed_coord.any? do |coord|
+      #   coord.count >= 2
+
+
+  end
+
+
 
   def nums(coordinates)
     coordinates.map do |number|
