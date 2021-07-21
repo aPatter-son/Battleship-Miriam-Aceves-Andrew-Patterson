@@ -47,11 +47,7 @@ class Board
   end
 
   def consecutive_nums?(coordinates)
-    # (nums(coordinates)[0]..nums(coordinates)[-1]).each_cons(coordinates.length).all? do |a, b|
-    #   b == a + 1
-    # end
     num_coordinates = nums(coordinates)
-    # binding.pry
     if coordinates.length == 2
       num_coordinates[0] == (num_coordinates[1] - 1) ? true : false
     else num_coordinates.length == 3
@@ -60,11 +56,11 @@ class Board
 
   end
 
-  # def cons_letters(coordinates)
-  #   ord_values = letters(coordinates).map do |let|
-  #     let.ord
-  #   end
-  # end
+  def cons_letters(coordinates)
+    ord_values = letters(coordinates).map do |let|
+      let.ord
+    end
+  end
 
   def letters_length?(coordinates)
     letters(coordinates).length == 1
