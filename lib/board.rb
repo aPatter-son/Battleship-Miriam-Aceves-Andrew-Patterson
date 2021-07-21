@@ -35,9 +35,8 @@ class Board
   end
 
   def nums(coordinates)
-    coordinates.map do |number|
-      # binding.pry
-      number.coordinate[1].to_i
+    coordinates.map do |cell|
+      cell.coordinate[1].to_i
     end.uniq
   end
 
@@ -47,16 +46,26 @@ class Board
     end.uniq
   end
 
-  def consecutive_nums(coordinates)
-    (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
+  def consecutive_nums?(coordinates)
+    # (nums(coordinates)[0]..nums(coordinates)[-1]).each_cons(coordinates.length).all? do |a, b|
+    #   b == a + 1
+    # end
+    num_coordinates = nums(coordinates)
+    # binding.pry
+    if coordinates.length == 2
+      num_coordinates[0] == (num_coordinates[1] - 1) ? true : false
+    else num_coordinates.length == 3
+      (num_coordinates[0] == (num_coordinates[1] - 1) && num_coordinates[1]) == (num_coordinates[2] - 1) ? true : false
+    end
+
   end
 
-  def cons_letters(coordinates)
-    ord_values = letters(coordinates).map do |let|
-      let.ord
-    end
-  end
-  
+  # def cons_letters(coordinates)
+  #   ord_values = letters(coordinates).map do |let|
+  #     let.ord
+  #   end
+  # end
+
   def letters_length?(coordinates)
     letters(coordinates).length == 1
   end
@@ -74,21 +83,21 @@ class Board
     end
   end
 
-  def render
-    # user board
-    "  1 2 3 4 \n" +
-    "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)}"
-    "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)}"
-    "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)}"
-    "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)}"
-
-    #computer board
-    "  1 2 3 4 \n" +
-    "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}"
-    "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}"
-    "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}"
-    "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}"
-
-
-  end
+  # def render
+  #   # user board
+  #   "  1 2 3 4 \n" +
+  #   "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)}"
+  #   "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)}"
+  #   "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)}"
+  #   "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)}"
+  #
+  #   #computer board
+  #   "  1 2 3 4 \n" +
+  #   "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}"
+  #   "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}"
+  #   "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}"
+  #   "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}"
+  #
+  #
+  # end
 end
