@@ -26,17 +26,39 @@ class Board
     @cells.keys.include?(coordinate)
   end
 
+  # test
   def valid_placement?(ship, coordinates)
-
+    start_check?
+    # consec_nums == true && consec_letters == false || consec_letters == true && consec_nums == false
   end
 
-  def valid_length(ship, coordinates)
+  def start_check?
+    if valid_length?(coordinates) == true
+        cons_length_check(coordinates)
+        binding.pry
+      else
+        false
+    end
+  end
+
+  def cons_length_check?(coordinates)
+    if nums_length?(coordinates) && letters_length?(coordinates) == 1
+      false
+    elsif nums_length?(coordinates) == 1
+      cons_letter?(coordinates)
+    elsif letters_length?(coordinates) == 1
+    consecutive_nums?(coordinates)
+    else
+      false
+    end
+  end
+
+  def valid_length?(ship, coordinates)
     coordinates.count == ship.length
   end
 
   def nums(coordinates)
     coordinates.map do |number|
-      # binding.pry
       number.coordinate[1].to_i
     end.uniq
   end
@@ -47,33 +69,76 @@ class Board
     end.uniq
   end
 
-  def consecutive_nums(coordinates)
-    (nums(coordinates)[0]..nums(coordinates)[-1]).to_a
-  end
-
-  def cons_letters(coordinates)
-    ord_values = letters(coordinates).map do |let|
-      let.ord
+  def consecutive_nums?(coordinates)
+    num_coordinates = nums(coordinates)
+    if coordinates.length == 2
+      num_coordinates[0] == (num_coordinates[1] - 1) ? true : false
+    else num_coordinates.length == 3
+      (num_coordinates[0] == (num_coordinates[1] - 1) && num_coordinates[1]) == (num_coordinates[2] - 1) ? true : false
     end
   end
-  
+  def cons_letters?(coordinates)
+    ord_values = []
+    letters(coordinates).map do |let|
+      ord_values << let.ord
+    end
+
+    ord_values.each_cons(2).all? {|a, b| b == a + 1 }
+  end
+
+  # test
   def letters_length?(coordinates)
-    letters(coordinates).length == 1
-  end
-
-  def nums_length?(coordinates)
-    nums(coordinates).length == 1
-  end
-
-  def cons_letters
-    # incomplete
-    ord_values = letters.map do |let|
-      let.ord
-
-      # ord[] -> each_cons (rules) [1,2,3]
+    if letters(coordinates).length == 1
+      true
+    else cons_letters?(coordinates)
     end
   end
 
+  # test
+  def nums_length?(coordinates)
+    if nums(coordinates).length == 1
+      true
+    else consecutive_nums?(coordinates)
+    end
+  end
+
+  # test
+  # def consec_methods
+  #   consec_letters_same_nums
+  #   consec_num_same_letters
+  # end
+  #
+  #  test
+  #  def consec_letters_same_nums [B,C,D] == true
+  #                               [D, B, A]
+  #    if letters_length = false
+  #      (check if letters are consec.)
+  #    elsif
+   #
+   #   end
+   # end
+   #
+   # test
+   # def consec_num_same_letters [A]
+   #    letters_length = true
+   #    if consecutive_nums(coordinates) == nums(coordinates)
+   #      true
+   #    else
+   #      false
+   #    end
+   #  end
+
+  # test
+  # def cons_letters
+  #   # incomplete
+  #   ord_values = letters.map do |let|
+  #     let.ord
+  #
+  #     # ord[] -> each_cons (rules) [1,2,3]
+  #   end
+  # end
+
+  # test
   def render
     # user board
     "  1 2 3 4 \n" +
